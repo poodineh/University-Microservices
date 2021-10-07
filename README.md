@@ -5,6 +5,8 @@
 
 🌀 Keep in mind this repository is work in progress and will be complete over time 🚀
 
+[![Sparkline](https://stars.medv.io/meysamhadeli/University-Microservices.svg)](https://stars.medv.io/meysamhadeli/University-Microservices)
+
 # Support ⭐
 If you like my work, feel free to:
 
