@@ -34,7 +34,7 @@ High-level plan is represented in the table
 | Feature | Status |
 | ------- | ------ |
 | Building Blocks | Completed ✔️ |
-| Cources Service | Completed ✔️ |
+| Courses Service | Completed ✔️ |
 | Departments Service | Completed ✔️ |
 | Instructors Service | Completed ✔️ |
 | Students Service | Completed ✔️ |
