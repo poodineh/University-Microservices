@@ -13,15 +13,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "University.ApiGateway", "sr
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{8E7B7C29-3B80-47C8-B652-8462635A5031}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Cources", "Cources", "{BF3F6CFD-39CB-4351-84C5-8B2B00757C5E}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Courses", "Courses", "{BF3F6CFD-39CB-4351-84C5-8B2B00757C5E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "University.Cources.Api", "src\Services\Cources\University.Cources.Api\University.Cources.Api.csproj", "{E37108BE-CA73-4EBB-9E74-7B5DB0B7497F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "University.Courses.Api", "src\Services\Courses\University.Courses.Api\University.Courses.Api.csproj", "{E37108BE-CA73-4EBB-9E74-7B5DB0B7497F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "University.Cources.Application", "src\Services\Cources\University.Cources.Application\University.Cources.Application.csproj", "{ECA9FD2D-FA75-42BB-9626-E0ADFC910A17}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "University.Courses.Application", "src\Services\Courses\University.Courses.Application\University.Courses.Application.csproj", "{ECA9FD2D-FA75-42BB-9626-E0ADFC910A17}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "University.Cources.Core", "src\Services\Cources\University.Cources.Core\University.Cources.Core.csproj", "{EC10F63C-3D2B-4C6B-BB58-8FD0269B65F0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "University.Courses.Core", "src\Services\Courses\University.Courses.Core\University.Courses.Core.csproj", "{EC10F63C-3D2B-4C6B-BB58-8FD0269B65F0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "University.Cources.Infrastructure", "src\Services\Cources\University.Cources.Infrastructure\University.Cources.Infrastructure.csproj", "{A5E34E15-511A-4D3A-9E7C-847B21A4207F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "University.Courses.Infrastructure", "src\Services\Courses\University.Courses.Infrastructure\University.Courses.Infrastructure.csproj", "{A5E34E15-511A-4D3A-9E7C-847B21A4207F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Departments", "Departments", "{5E86038E-B69B-48BB-B7A2-1D7358B6D67A}"
 EndProject
