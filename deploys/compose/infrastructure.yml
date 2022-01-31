@@ -1,10 +1,41 @@
 version: "3.7"
 
 services:
-  jaeger:
+ 
+   mongo:
+    image: mongo
+    container_name: mongo
+    restart: unless-stopped
+    # environment:
+     # - MONGO_INITDB_ROOT_USERNAME=root
+     # - MONGO_INITDB_ROOT_PASSWORD=secret
+    networks:
+      - university
+    ports:
+      - 27017:27017
+    volumes:
+      - mongo:/data/db
+
+
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: 'rabbitmq'
+    ports:
+        - 5672:5672
+        - 15672:15672
+    volumes:
+        - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
+        - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
+    networks:
+        - university
+
+
+jaeger:
     image: jaegertracing/all-in-one
     container_name: jaeger
     restart: unless-stopped
+    networks:
+      - university
     ports:
       - 5775:5775/udp
       - 5778:5778
@@ -13,8 +44,14 @@ services:
       - 9411:9411
       - 14268:14268
       - 16686:16686
-    networks:
-      - university    
+
+volumes:
+
+  mongo:
+    driver: local
+
+  # rabbitmq:
+  #   driver: local 
 
 networks:
   university:
