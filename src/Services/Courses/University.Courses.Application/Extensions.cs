@@ -1,6 +1,7 @@
 ﻿using BuildingBlocks.CQRS.Commands;
 using BuildingBlocks.CQRS.Events;
 using BuildingBlocks.CQRS.Queries;
+using DotNetCore.CAP;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace University.Courses.Application

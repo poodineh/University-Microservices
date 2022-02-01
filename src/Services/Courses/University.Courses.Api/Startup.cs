@@ -1,3 +1,4 @@
+using DotNetCore.CAP;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -25,6 +26,9 @@ namespace University.Courses.Api
             services.AddControllers().AddNewtonsoftJson();
 
             services.AddFluentValidation(x => { x.RegisterValidatorsFromAssembly(typeof(Startup).Assembly); });
+
+            // For Testing Subscriber
+            services.AddScoped<ICapSubscribe, TestSubscriber>();
 
             services.AddApplication()
                 .AddInfrastructure();
