@@ -26,10 +26,6 @@ namespace University.Courses.Api
             services.AddControllers().AddNewtonsoftJson();
 
             services.AddFluentValidation(x => { x.RegisterValidatorsFromAssembly(typeof(Startup).Assembly); });
-
-            // For Testing Subscriber
-            services.AddScoped<ICapSubscribe, TestSubscriber>();
-
             services.AddApplication()
                 .AddInfrastructure();
 

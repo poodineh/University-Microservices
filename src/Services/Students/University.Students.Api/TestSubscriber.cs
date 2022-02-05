@@ -1,8 +1,8 @@
 ﻿using System;
 using DotNetCore.CAP;
-using University.Courses.Application.Events.External;
+using University.Students.Application.Events;
 
-namespace University.Courses.Api
+namespace University.Students.Api
 {
     public class TestSubscriber : ICapSubscribe
     {

@@ -45,7 +45,7 @@ namespace University.Students.Infrastructure
             services.AddTransient<IMessageBroker, MessageBroker>();
             services.AddTransient<IEventMapper, EventMapper>();
             services.AddTransient<IEventProcessor, EventProcessor>();
-            
+
             services.AddCap(x =>
             {
                 x.UseEntityFramework<StudentDbContext>();
@@ -69,7 +69,7 @@ namespace University.Students.Infrastructure
             });
 
             services.AddOpenTelemetry();
-            
+
             return services;
         }
 

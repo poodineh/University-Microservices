@@ -7,10 +7,10 @@ namespace University.Students.Application
 {
     public interface IStudentDbContext
     {
-        DbSet<Student> Students { get; set; }
-        DbSet<Enrollment> Enrollments { get; set; }
-        Task BeginTransactionAsync();
+        DbSet<Student> Students { get; }
+        DbSet<Enrollment> Enrollments { get; }
+        Task BeginTransactionAsync(CancellationToken cancellationToken);
         Task CommitTransactionAsync(CancellationToken cancellationToken);
-        Task RollbackTransaction(CancellationToken cancellationToken);
+        Task RollbackTransactionAsync(CancellationToken cancellationToken);
     }
 }

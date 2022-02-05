@@ -1,3 +1,4 @@
+using DotNetCore.CAP;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -25,6 +26,9 @@ namespace University.Students.Api
             services
                 .AddApplication()
                 .AddInfrastructure();
+
+            // For Testing Subscriber
+            services.AddScoped<ICapSubscribe, TestSubscriber>();
 
 
             services.AddSwaggerGen(c =>

@@ -7,9 +7,9 @@ namespace University.Departments.Application
 {
     public interface IDepartmentDbContext
     {
-        DbSet<Department> Departments { get; set; }
-        Task BeginTransactionAsync();
+        DbSet<Department> Departments { get; }
+        Task BeginTransactionAsync(CancellationToken cancellationToken);
         Task CommitTransactionAsync(CancellationToken cancellationToken);
-        Task RollbackTransaction(CancellationToken cancellationToken);
+        Task RollbackTransactionAsync(CancellationToken cancellationToken);
     }
 }

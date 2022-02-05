@@ -7,9 +7,9 @@ namespace University.Courses.Application
 {
     public interface ICourseDbContext
     {
-        DbSet<Course> Courses { get; set; }
-        Task BeginTransactionAsync();
+        DbSet<Course> Courses { get;}
+        Task BeginTransactionAsync(CancellationToken cancellationToken);
         Task CommitTransactionAsync(CancellationToken cancellationToken);
-        Task RollbackTransaction(CancellationToken cancellationToken);
+        Task RollbackTransactionAsync(CancellationToken cancellationToken);
     }
 }

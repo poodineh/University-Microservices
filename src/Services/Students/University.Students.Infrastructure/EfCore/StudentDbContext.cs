@@ -19,11 +19,11 @@ namespace University.Students.Infrastructure.EfCore
         public DbSet<Student> Students { get; set; }
         public DbSet<Enrollment> Enrollments { get; set; }
 
-        public async Task BeginTransactionAsync()
+        public async Task BeginTransactionAsync(CancellationToken cancellationToken)
         {
             if (_currentTransaction != null) return;
 
-            _currentTransaction = await Database.BeginTransactionAsync();
+            _currentTransaction = await Database.BeginTransactionAsync(cancellationToken);
         }
 
         public async Task CommitTransactionAsync(CancellationToken cancellationToken)
@@ -36,7 +36,7 @@ namespace University.Students.Infrastructure.EfCore
             }
             catch
             {
-                await RollbackTransaction(cancellationToken);
+                await RollbackTransactionAsync(cancellationToken);
                 throw;
             }
             finally
@@ -49,7 +49,7 @@ namespace University.Students.Infrastructure.EfCore
             }
         }
 
-        public async Task RollbackTransaction(CancellationToken cancellationToken)
+        public async Task RollbackTransactionAsync(CancellationToken cancellationToken)
         {
             try
             {
