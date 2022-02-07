@@ -16,20 +16,16 @@ namespace University.Students.Infrastructure.Services
         private readonly ILogger<MessageBroker> _logger;
         private readonly StudentDbContext _studentDbContext;
         private readonly Options.OutboxOptions _outbox;
-        private readonly Options.RabbitMqOptions _rabbitMqOptions;
 
         public MessageBroker(ICapPublisher capPublisher, ILogger<MessageBroker> logger,
-            StudentDbContext studentDbContext, Options.OutboxOptions outbox, Options.RabbitMqOptions rabbitMqOptions)
+            StudentDbContext studentDbContext, Options.OutboxOptions outbox)
         {
             _capPublisher = capPublisher;
             _logger = logger;
             _studentDbContext = studentDbContext;
             _outbox = outbox;
-            _rabbitMqOptions = rabbitMqOptions;
         }
-
-        public Task PublishAsync(params IEvent[] events) => PublishAsync(events?.AsEnumerable());
-
+        
         public async Task PublishAsync(IEnumerable<IEvent> events)
         {
             if (events is null)
@@ -49,12 +45,14 @@ namespace University.Students.Infrastructure.Services
                     using (var trans = _studentDbContext.Database.BeginTransaction(_capPublisher, autoCommit: true))
                     {
                         await _capPublisher.PublishAsync(@event.GetType().Name, @event);
+                        _logger.LogInformation("Published event: {@event}");
                     }
 
                     continue;
                 }
 
                 await _capPublisher.PublishAsync(@event.GetType().Name, @event);
+                _logger.LogInformation("Published event: {@event}");
             }
         }
     }

@@ -1,3 +1,4 @@
+using System;
 using DotNetCore.CAP;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
@@ -29,6 +30,13 @@ namespace University.Courses.Api
             services.AddApplication()
                 .AddInfrastructure();
 
+            // For Testing Subscriber
+            services.Scan(s =>
+                s.FromAssemblies(AppDomain.CurrentDomain.GetAssemblies())
+                    .AddClasses(c => c.AssignableTo(typeof(ICapSubscribe)))
+                    .AsImplementedInterfaces()
+                    .WithScopedLifetime());
+            
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo {Title = "University.Courses.Api", Version = "v1"});

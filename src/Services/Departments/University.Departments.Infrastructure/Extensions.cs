@@ -1,4 +1,5 @@
 ﻿using BuildingBlocks;
+using BuildingBlocks.CAP;
 using BuildingBlocks.Exception;
 using BuildingBlocks.Types;
 using Microsoft.AspNetCore.Builder;
@@ -37,20 +38,7 @@ namespace University.Departments.Infrastructure
             services.AddTransient<IEventMapper, EventMapper>();
             services.AddTransient<IEventProcessor, EventProcessor>();
 
-            services.AddCap(x =>
-            {
-                x.UseEntityFramework<DepartmentDbContext>();
-
-                x.UseSqlServer(connectionString);
-
-                x.UseRabbitMQ(r =>
-                {
-                    r.HostName = "localhost";
-                    r.ExchangeName = "departments";
-                });
-
-                x.FailedRetryCount = 5;
-            });
+            services.AddCustomCap<DepartmentDbContext>();
 
             return services;
         }
