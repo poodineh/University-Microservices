@@ -11,40 +11,42 @@ using University.Courses.Application.Services;
 using University.Courses.Infrastructure.EfCore;
 using University.Courses.Infrastructure.Services;
 
-namespace University.Courses.Infrastructure;
-
-public static class Extensions
+namespace University.Courses.Infrastructure
 {
-    public static IServiceCollection AddInfrastructure(this IServiceCollection services)
+
+    public static class Extensions
     {
-        var configuration = services.BuildServiceProvider().GetService<IConfiguration>();
-        var connectionString = configuration!.GetSection("connectionString").Value;
+        public static IServiceCollection AddInfrastructure(this IServiceCollection services)
+        {
+            var configuration = services.BuildServiceProvider().GetService<IConfiguration>();
+            var connectionString = configuration!.GetSection("connectionString").Value;
 
-        services.AddErrorHandler<ExceptionToResponseMapper>();
-        services.AddTransient<IExceptionToMessageMapper, ExceptionToMessageMapper>();
+            services.AddErrorHandler<ExceptionToResponseMapper>();
+            services.AddTransient<IExceptionToMessageMapper, ExceptionToMessageMapper>();
 
-        services.AddDbContext<CourseDbContext>(options =>
-            options.UseSqlServer(connectionString));
+            services.AddDbContext<CourseDbContext>(options =>
+                options.UseSqlServer(connectionString));
 
 
-        var outboxOptions = services.GetOptions<Options.OutboxOptions>("outbox");
-        services.AddSingleton(outboxOptions);
+            var outboxOptions = services.GetOptions<Options.OutboxOptions>("outbox");
+            services.AddSingleton(outboxOptions);
 
-        services.AddTransient<ICourseDbContext>(provider => provider.GetService<CourseDbContext>());
+            services.AddTransient<ICourseDbContext>(provider => provider.GetService<CourseDbContext>());
 
-        services.AddTransient<IMessageBroker, MessageBroker>();
-        services.AddTransient<IEventMapper, EventMapper>();
-        services.AddTransient<IEventProcessor, EventProcessor>();
+            services.AddTransient<IMessageBroker, MessageBroker>();
+            services.AddTransient<IEventMapper, EventMapper>();
+            services.AddTransient<IEventProcessor, EventProcessor>();
 
-        services.AddCustomCap<CourseDbContext>();
+            services.AddCustomCap<CourseDbContext>();
 
-        return services;
-    }
+            return services;
+        }
 
-    public static IApplicationBuilder UseInfrastructure(this IApplicationBuilder app)
-    {
-        app.UseErrorHandler();
+        public static IApplicationBuilder UseInfrastructure(this IApplicationBuilder app)
+        {
+            app.UseErrorHandler();
 
-        return app;
+            return app;
+        }
     }
 }
